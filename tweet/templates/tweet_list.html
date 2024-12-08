@@ -1,0 +1,90 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<aside class="user-section">
+    <h2 style = "text-align :center ">My Profile</h2>
+    
+    <div class="user-info">
+        {% if user.is_authenticated %}
+        <img class="profile-pic" src="/media/{{ customers.profile_picture }}" alt="Profile Picture">
+        <h3>{{ user.username }}</h3>
+        <p>Email: {{ customers.email }}</p>
+        <p>Contact No: {{ customers.contact_number }}</p>
+
+        <a href="{% url 'tweet_create' %}" class="create-tweet-btn">Create Tweet</a>
+        {% else %}
+        <p>login to see details</p>
+        <a href="{% url 'log' %}">Login</a>
+        {% endif %}
+    </div>
+</aside>
+
+
+
+<main class="image-section">
+    <h2 style = "text-align :center ">All Tweets</h2>
+        {% for tw in all_tweets_list %}
+            <div class="card">
+                <div class="img-card">
+                    {% if tw.photo %}
+                        <img src="{{ tw.photo.url }}" alt="Uploaded Image" class="responsive-image">
+                    {% else %}
+                        <p>No image uploaded.</p>
+                    {% endif %}
+                </div>
+                <div class="action-links">
+                    <p><b><u>{{ tw.user.username }}</u></b></p>
+                    <p>{{ tw.text }}</p>
+
+                    {% if tw.user == user %}
+                        <a href="{% url 'tweet_edit' tw.id %}">Edit</a>
+                        <a href="{% url 'tweet_delete' tw.id %}">Delete</a>
+                    {% endif %}
+                </div>
+            </div>
+        {% empty %}
+            <p>No tweets available.</p>
+        {% endfor %}
+</main>
+
+
+
+<aside class="user-tweet-section">
+    <h2 style="text-align: center">My Tweets</h2>
+    <div class="user-image-section">
+        {% for tw in user_tweets_list %}
+            <div class="user-card">
+                <div class="user-img-card">
+                    {% if tw.photo %}
+                    {% comment %} <div class="user-img-card" style="background-image: url('{{ tw.photo.url }}');"> {% endcomment %}
+                        <img src="{{ tw.photo.url }}" alt="Uploaded Image" class="user-responsive-image">
+                    {% else %}
+                        <p>No image uploaded.</p>
+                    {% endif %}
+                </div>
+                <div class="user-action-links">
+                    <p><b><u>{{ tw.user.username }}</u></b></p>
+                    <p>{{ tw.text }}</p>
+                    {% if tw.user == user %}
+                        <a href="{% url 'tweet_edit' tw.id %}">Edit</a>
+                        <a href="{% url 'tweet_delete' tw.id %}">Delete</a>
+                    {% endif %}
+                </div>
+            </div>
+        {% empty %}
+            
+            <p style="text-align: center">login to see details <a href="{% url 'log' %}">Login</a></p>
+        
+        {% endfor %}
+    </div>
+</aside>
+
+{% comment %} 
+{% if messages %}
+    {% for message in messages %}
+        <script>alert("{{ message }}");</script>
+    {% endfor %}
+{% endif %} {% endcomment %}
+
+{% endblock %}

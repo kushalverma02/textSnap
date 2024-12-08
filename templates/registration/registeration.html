@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="registration-form">
+    <h2>Register</h2>
+    <form method="POST" enctype = "multipart/form-data">
+        {% csrf_token %}
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <label for="contact">contact:</label>
+        <input type="text" id="contact" name="contactno" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        
+        <label for="profile-photo">profile picture</label>
+        <input type="file" id="profile-photo" name="profile_pic" required>
+        <br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+{% comment %}  
+        <label for="confirm-password">Confirm Password:</label>
+        <input type="password" id="confirm-password" name="confirm-password" required>  {% endcomment %}
+        
+        <input type="submit" value="Register">
+    </form>
+    <p>Already have an account?<a href="{% url 'log'%}">Login here</a>.</p>
+</div>
+
+
+
+
+{% if status  %}
+<script>
+    alert("{{status}}");
+    window.location"{% url "log"%}"
+</script>
+{% endif %}
+
+ {% comment %} <script>
+    const form = document.querySelector('form');
+    form.addEventListener('submit', function (event) {
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirm-password').value;
+        
+        if (password !== confirmPassword) {
+            alert('Passwords do not match!');
+            event.preventDefault();
+        }
+    });
+</script>  {% endcomment %}
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="tweet-creation-form">
+<h2>
+    {% if form.instance.pk %}
+    edit tweet
+    {% else %}
+    Create Tweet 
+    {% endif %}
+    <form method ="post" enctype ="multipart/form-data" class="form">
+       {% csrf_token %}
+        {% comment %}form rendered as paragraph  {% endcomment %}
+       {{form.as_p}}
+    <button type ='submit'>submit</button>
+    </form>
+    {% comment %} <a href="{% url 'tweet_list' %}"></a> {% endcomment %}
+        </h2>
+
+    </div>
+{% endblock %}

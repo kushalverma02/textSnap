@@ -1,0 +1,25 @@
+ {% extends "layout.html" %}
+{% block content %}
+
+<div class="login-form">
+    <h2>Login</h2>
+    <form action="{% url 'log'%}" method="POST">
+        {% csrf_token %}
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <input type="submit" value="Login">
+    </form>
+    <p>Don't have an account? <a href="{% url 'reg'%}">Register here</a>.</p>
+</div>
+
+
+{% if messages %}
+    {% for message in messages %}
+        <script>alert("{{ message }}");</script>
+    {% endfor %}
+{% endif %} 
+{% endblock %}

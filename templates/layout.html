@@ -1,0 +1,445 @@
+{% load static %}
+<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>{% block  title %}
+        tweets
+        {% endblock %}</title>
+        <style>
+        /* styles.css */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        
+        {% comment %} this is styling for navigation section {% endcomment %}
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            padding: 10px 20px;
+            
+        }
+        
+        .navbar-left {
+            display: flex;
+            align-items: center;
+
+        }
+        
+        .navbar-left .website-name {
+            color: white;
+            font-size: 1.5em;
+            margin-right: 20px;
+            margin-top: 13px;
+           
+        }
+        
+        .navbar-left a {
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+            transition: background-color 0.3s;
+        }
+        
+        .navbar-left a:hover {
+            background-color: #575757;
+        }
+        
+        .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+        .user_details
+        {
+            color: white;
+            font-size: 15px;
+            margin-right: 20px;
+
+        }
+        .navbar-right a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            margin-left: 15px;
+            border-radius: 4px; 
+            transition: background-color 0.3s;
+        }
+        
+        .navbar-right a:hover {
+            background-color: #575757;
+        }
+        .logout-btn {
+            background-color: #bf6969;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+           
+        }
+        
+        .logout-btn:hover {
+            background-color: #d1d1d1;
+        }
+
+
+{% comment %} this is the main section of the page {% endcomment %}
+.container {
+    display: flex;
+    height: calc(100vh - 50px); /* Adjust height for navbar */
+    width:95%;
+    padding: 20px;
+}
+
+{% comment %} left most section  {% endcomment %}
+.user-section {
+    width: 15%;
+    background-color: #f9f9f9;
+    border-right: 1px solid #e1e1e1;
+    padding: 20px;
+    {% comment %} border: 2px solid black; {% endcomment %}
+} 
+
+.user-info {
+    text-align: center;
+    margin-bottom: 20px;
+    {% comment %} border:2px solid black;
+    background-color: #f9f9f10;
+    border: 3px solid #e1e1e1; {% endcomment %}
+}
+
+.profile-pic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    {% comment %} background-color: white;    {% endcomment %}
+    
+}
+
+{% comment %} create tweet button style {% endcomment %}
+.create-tweet-btn {
+    display: inline-block;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-bottom: 20px;
+}
+
+.create-tweet-btn:hover {
+    background-color: #45a049;
+}
+
+
+
+
+{% comment %} middle section {% endcomment %}
+
+.image-section {
+    align-items:center;
+    flex-grow: 1;
+    padding: 20px;
+    width : 40%;
+    height:  auto;
+    overflow-y: auto;
+    border-radius: 10px;
+    {% comment %} border : 2px solid black; {% endcomment %}
+    {% comment %} background:yellow; {% endcomment %}
+}
+    
+    
+.card {
+    {% comment %} display: flex; {% endcomment %}
+    {% comment %} background: green; {% endcomment %}
+    align-items : center;
+    border: 2px solid #e1e1e1;
+    border-radius: 15px;
+    padding: 10px;
+    margin-left: 75px;
+    margin-bottom:10px;
+    width: 75%; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.img-card{
+    {% comment %} background: black; {% endcomment %}
+    margin-left: 5px;
+    padding:20px;
+    
+
+}
+.responsive-image {
+    width: 468px; /* Sets the image width to 100% of the container */
+    height: auto; /* Maintains the aspect ratio of the image */
+    max-height : 600px;
+    margin-left:28px;   
+    border-radius: 15px; 
+}
+
+.action-links {
+    margin-top: 10px;
+    margin-left:55px;
+    margin-right:58px;
+}
+
+
+
+
+
+
+
+
+{% comment %} right section {% endcomment %}
+.user-tweet-section{
+    overflow-y: auto;
+    width :25%;
+    margin-top:18px;
+    background-color: #f9f9f9;
+    border-left: 1px solid #e1e1e1;
+}
+
+.user-image-section {
+    align-items:center;
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.user-card {
+    border: 1px solid #e1e1e1;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+}
+.user-img-card {
+    padding: 12px;
+    height: 250px;
+    width: 250px;
+    overflow: hidden; 
+}
+
+.user-responsive-image {
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    border-radius: 10px;
+}
+
+
+.user-action-links {
+    margin-left:15px;
+    margin-right:15px;
+}
+
+
+
+
+{% comment %} styling for registration form {% endcomment %}
+.registration-form {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: auto;
+}
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: calc(100% - 22px); /* Adjust width to account for padding and borders */
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Ensure padding and border are included in total width */
+}
+input[type="submit"] {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 20%;
+}
+input[type="submit"]:hover {
+    background-color: #218838;
+}
+
+{% comment %} code for login form {% endcomment %}
+
+.login-form {
+    background: white;
+    padding: 30px; /* Increased padding for height */
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: auto;
+}
+input[type="text"],
+input[type="password"] {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 15px; /* Increased padding for button */
+    border-radius: 4px;
+    cursor: pointer;
+    width:20%;
+    font-size: 16px; /* Adjusted font size for better visibility */
+}create a link in both the pages so that user can navigate among them from one page to another page  
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+
+
+
+{% comment %} styling for the tweet creation form  {% endcomment %}
+.tweet-creation-form {
+    max-width: 600px; 
+    max-height:450px;
+    margin: 20px auto; 
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+}
+
+.tweet-creation-form h2 {
+    text-align:center;
+    font-size: 24px;
+    margin-bottom: 20px; 
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form p {
+    margin-bottom: 15px; 
+}
+
+button[type='submit'] {
+    background-color: #007bff; 
+    color: white; 
+    border: none; 
+    border-radius: 5px; 
+    padding: 10px 15px; 
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button[type='submit']:hover {
+    background-color: #0056b3; 
+}
+
+a {
+    margin-top: 15px; 
+    text-decoration: none; 
+    color: #007bff;
+
+}
+a:hover {
+    text-decoration: underline; 
+}
+
+
+footer {
+    background-color: #f5f8fa;
+    padding: 20px;
+    text-align: center;
+    border-top: 1px solid #e1e8ed;
+}
+
+.footer-content {
+    max-width: 800px;
+    margin: auto;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links li {
+    display: inline;
+    margin: 0 15px;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: #1da1f2;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+</style>        
+</head>
+<body>
+   
+    {% comment %} {% block navigation %}{% endblock %} {% endcomment %}
+<nav class="navbar">
+    <div class="navbar-left">
+        <span class="website-name">TextSnap</span>
+        <a href="{% url 'tweet_list' %}">Home</a>
+        <a href="#">about us </a>
+        <a href="#">contact us</a>
+    </div>
+
+    <div class="navbar-right">
+        {% if user.is_authenticated %}
+        {% comment %} <p class= "user_details"> welcome <i class="fa-solid fa-user"></i>&nbsp; {{ user.username }}</p> {% endcomment %}
+       <div style="display: inline-block; margin-top: 5px;">
+                <form method="post" action="{% url 'user_logout' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="logout-btn">Logout</button>
+                </form>
+            </div>
+        {% else %}
+            <a href="{% url 'reg' %}">SignIn</a>
+            <a href="{% url 'log' %}">Login</a>
+        {% endif %}
+    </div>
+    
+</nav>
+
+
+<div class = 'container'>
+    {% block content %}
+<h2>this is the base layout content  </h2>
+    {% endblock %}
+</div>
+
+<footer>
+    <div class="footer-content">
+        <p>&copy; 2024 Tweet. All rights reserved.</p>
+        <ul class="footer-links">
+            <li><a href="#">About</a></li>
+            <li><a href="#">Help</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+        </ul>
+    </div>
+</footer>
+
+</body>
+</html>
