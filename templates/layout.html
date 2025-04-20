@@ -17,7 +17,6 @@
             font-family: Arial, sans-serif;
         }
         
-        {% comment %} this is styling for navigation section {% endcomment %}
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -89,7 +88,7 @@
         }
 
 
-{% comment %} this is the main section of the page {% endcomment %}
+
 .container {
     display: flex;
     height: calc(100vh - 50px); /* Adjust height for navbar */
@@ -97,33 +96,26 @@
     padding: 20px;
 }
 
-{% comment %} left most section  {% endcomment %}
+
 .user-section {
     width: 15%;
     background-color: #f9f9f9;
     border-right: 1px solid #e1e1e1;
     padding: 20px;
-    {% comment %} border: 2px solid black; {% endcomment %}
 } 
 
 .user-info {
     text-align: center;
     margin-bottom: 20px;
-    {% comment %} border:2px solid black;
-    background-color: #f9f9f10;
-    border: 3px solid #e1e1e1; {% endcomment %}
-}
+  }
 
 .profile-pic {
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    margin-bottom: 10px;
-    {% comment %} background-color: white;    {% endcomment %}
-    
+    margin-bottom: 10px;   
 }
 
-{% comment %} create tweet button style {% endcomment %}
 .create-tweet-btn {
     display: inline-block;
     background-color: #4CAF50;
@@ -139,10 +131,6 @@
 }
 
 
-
-
-{% comment %} middle section {% endcomment %}
-
 .image-section {
     align-items:center;
     flex-grow: 1;
@@ -151,14 +139,10 @@
     height:  auto;
     overflow-y: auto;
     border-radius: 10px;
-    {% comment %} border : 2px solid black; {% endcomment %}
-    {% comment %} background:yellow; {% endcomment %}
-}
+ }
     
     
 .card {
-    {% comment %} display: flex; {% endcomment %}
-    {% comment %} background: green; {% endcomment %}
     align-items : center;
     border: 2px solid #e1e1e1;
     border-radius: 15px;
@@ -170,7 +154,6 @@
 }
 
 .img-card{
-    {% comment %} background: black; {% endcomment %}
     margin-left: 5px;
     padding:20px;
     
@@ -190,14 +173,6 @@
     margin-right:58px;
 }
 
-
-
-
-
-
-
-
-{% comment %} right section {% endcomment %}
 .user-tweet-section{
     overflow-y: auto;
     width :25%;
@@ -220,8 +195,8 @@
 }
 .user-img-card {
     padding: 12px;
-    height: 250px;
-    width: 250px;
+    height: 120px;
+    /* width: 250px; */
     overflow: hidden; 
 }
 
@@ -238,10 +213,6 @@
     margin-right:15px;
 }
 
-
-
-
-{% comment %} styling for registration form {% endcomment %}
 .registration-form {
     background: white;
     padding: 20px;
@@ -253,12 +224,12 @@
 input[type="text"],
 input[type="email"],
 input[type="password"] {
-    width: calc(100% - 22px); /* Adjust width to account for padding and borders */
+    width: calc(100% - 22px);
     padding: 10px;
     margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 4px;
-    box-sizing: border-box; /* Ensure padding and border are included in total width */
+    box-sizing: border-box; 
 }
 input[type="submit"] {
     background-color: #28a745;
@@ -273,11 +244,11 @@ input[type="submit"]:hover {
     background-color: #218838;
 }
 
-{% comment %} code for login form {% endcomment %}
+
 
 .login-form {
     background: white;
-    padding: 30px; /* Increased padding for height */
+    padding: 30px; 
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     max-width: 400px;
@@ -296,20 +267,18 @@ input[type="submit"] {
     background-color: #007bff;
     color: white;
     border: none;
-    padding: 15px; /* Increased padding for button */
+    padding: 15px; 
     border-radius: 4px;
     cursor: pointer;
     width:20%;
-    font-size: 16px; /* Adjusted font size for better visibility */
-}create a link in both the pages so that user can navigate among them from one page to another page  
+    font-size: 16px; 
+}
 input[type="submit"]:hover {
     background-color: #0056b3;
 }
 
 
 
-
-{% comment %} styling for the tweet creation form  {% endcomment %}
 .tweet-creation-form {
     max-width: 600px; 
     max-height:450px;
